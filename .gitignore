@@ -1,0 +1,10 @@
+.vscode/
+
+# Based on: https://github.com/Uniswap/v3-core/blob/main/.gitignore
+artifacts/
+cache/
+crytic-export/
+node_modules/
+typechain-types/
+coverage/
+coverage.json
