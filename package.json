@@ -61,6 +61,7 @@
     "ethers": "^5.5.4",
     "hardhat": "^2.8.3",
     "hardhat-contract-sizer": "^2.4.0",
+    "hardhat-deploy": "^0.11.10",
     "hardhat-typechain": "^0.3.5",
     "lodash": "^4.17.21",
     "mocha": "^9.2.0",

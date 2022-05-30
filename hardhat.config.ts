@@ -2,6 +2,7 @@ import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-etherscan';
 import '@nomiclabs/hardhat-waffle';
 import '@typechain/hardhat';
+import 'hardhat-deploy';
 import 'hardhat-contract-sizer';
 import { HardhatUserConfig } from 'hardhat/config';
 import { SolcUserConfig } from 'hardhat/types';
@@ -75,6 +76,9 @@ const config: HardhatUserConfig = {
     alphaSort: false,
     disambiguatePaths: true,
     runOnCompile: false,
+  },
+  namedAccounts: {
+    deployer: 0,
   },
 };
 
