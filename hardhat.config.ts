@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-etherscan';
 import '@nomiclabs/hardhat-waffle';
@@ -7,6 +8,8 @@ import 'hardhat-contract-sizer';
 import { HardhatUserConfig } from 'hardhat/config';
 import { SolcUserConfig } from 'hardhat/types';
 import 'solidity-coverage';
+
+const DEFAULT_ACCOUNTS = process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [];
 
 const DEFAULT_COMPILER_SETTINGS: SolcUserConfig = {
   version: '0.8.14',
@@ -37,6 +40,7 @@ const config: HardhatUserConfig = {
     },
     mainnet: {
       url: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      accounts: DEFAULT_ACCOUNTS,
     },
     ropsten: {
       url: `https://ropsten.infura.io/v3/${process.env.INFURA_API_KEY}`,
@@ -46,9 +50,11 @@ const config: HardhatUserConfig = {
     },
     goerli: {
       url: `https://goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      accounts: DEFAULT_ACCOUNTS,
     },
     kovan: {
       url: `https://kovan.infura.io/v3/${process.env.INFURA_API_KEY}`,
+      accounts: DEFAULT_ACCOUNTS,
     },
     arbitrumRinkeby: {
       url: `https://arbitrum-rinkeby.infura.io/v3/${process.env.INFURA_API_KEY}`,
@@ -67,6 +73,10 @@ const config: HardhatUserConfig = {
     },
     polygon: {
       url: `https://polygon-mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
+    },
+    gnosis: {
+      url: `https://gnosis.public-rpc.com`,
+      accounts: DEFAULT_ACCOUNTS,
     },
   },
   solidity: {

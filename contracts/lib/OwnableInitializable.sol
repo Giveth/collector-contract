@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+// SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.14;
 
 /// Must be called by the owner address.

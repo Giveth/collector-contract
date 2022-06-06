@@ -1,4 +1,5 @@
 .vscode/
+.env
 
 # Based on: https://github.com/Uniswap/v3-core/blob/main/.gitignore
 artifacts/

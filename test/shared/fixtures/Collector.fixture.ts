@@ -25,13 +25,14 @@ export const collectorFixture: Fixture<CollectorFixture> = async ([wallet]) => {
   const beneficiary = actors.beneficiary().address;
 
   // Create the collector contract:
-  const collector = (await waffle.deployContract(wallet, {
-    abi: Collector__factory.abi,
-    bytecode: Collector__factory.bytecode,
-  })) as Collector;
-
-  // Initialize the collector contract:
-  await collector.connect(actors.owner()).initialize(actors.beneficiary().address);
+  const collector = (await waffle.deployContract(
+    wallet,
+    {
+      abi: Collector__factory.abi,
+      bytecode: Collector__factory.bytecode,
+    },
+    [actors.owner().address, actors.beneficiary().address]
+  )) as Collector;
 
   // Create the test token to withdraw:
   const token = (await waffle.deployContract(

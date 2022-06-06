@@ -1,18 +1,10 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+// SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.14;
 
 /// @title ICollector
 /// @author Giveth developers
 /// @notice Interface of the Collector contract.
 interface ICollector {
-    ///
-    /// INITIALIZER:
-    ///
-
-    /// @dev Initialization function. Sets the explicit beneficiary and sets the initial owner to the deployer.
-    /// @param beneficiaryAddr Address to be set as beneficiary
-    function initialize(address beneficiaryAddr) external;
-
     ///
     /// ADMIN FUNCTIONS:
     ///

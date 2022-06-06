@@ -1,19 +1,22 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+// SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.14;
 
+import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol';
 import '@openzeppelin/contracts/utils/Address.sol';
 
 import './interfaces/ICollector.sol';
-import './lib/OwnableInitializable.sol';
 
 /// Must be called by the beneficiary address
 error OnlyBeneficiary();
 
+/// Must not be zero address.
+error NoAddressZero();
+
 /// @title Collector
 /// @author Giveth developers
 /// @notice A simple collection contract that allows the beneficiary to withdraw collected ETH and ERC-20 tokens.
-contract Collector is ICollector, OwnableInitializable {
+contract Collector is ICollector, Ownable {
     ///
     /// STATE:
     ///
@@ -31,13 +34,15 @@ contract Collector is ICollector, OwnableInitializable {
     }
 
     ///
-    /// INTIALIZER:
+    /// CONSTRUCTOR:
     ///
 
-    /// @inheritdoc ICollector
-    function initialize(address beneficiaryAddr) external {
+    /// @dev Construct the collector, set the owner and beneficiary
+    /// @param ownerAddr Address that will own the contract
+    /// @param beneficiaryAddr Address that will be the beneficiary
+    constructor(address ownerAddr, address beneficiaryAddr) {
         _beneficiary = beneficiaryAddr;
-        __initialize_Ownable(msg.sender);
+        _transferOwnership(ownerAddr);
     }
 
     ///

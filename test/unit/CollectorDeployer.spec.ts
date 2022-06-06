@@ -26,22 +26,16 @@ describe('unit/CollectorDeployer', () => {
   });
 
   describe('#deploy', () => {
-    let subject: (sender: Wallet, _beneficiaryAddr: string) => Promise<any>;
+    let subject: (sender: Wallet, _ownerAddr: string, _beneficiaryAddr: string) => Promise<any>;
 
     before(() => {
-      subject = (sender: Wallet, _beneficiaryAddr: string) =>
+      subject = (sender: Wallet, _ownerAddr: string, _beneficiaryAddr: string) =>
         context.collectorDeployer.connect(sender).deploy(_beneficiaryAddr);
     });
 
     describe('works and', () => {
-      it('emits the deployed event', async () => {
-        await expect(subject(actors.owner(), actors.beneficiary().address))
-          .to.emit(context.collectorDeployer, 'Deployed')
-          .withArgs(context.address);
-      });
-
       it('deploys the Collector contract', async () => {
-        await subject(actors.deployer(), actors.beneficiary().address);
+        await subject(actors.deployer(), actors.owner().address, actors.beneficiary().address);
         const instance = (await ethers.getContractAt('Collector', context.address)) as Collector;
         expect(await instance.beneficiary()).to.be.eq(actors.beneficiary().address);
       });
